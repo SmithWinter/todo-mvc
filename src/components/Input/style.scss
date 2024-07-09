@@ -1,0 +1,34 @@
+.input-container {
+  padding: 4px;
+  display: flex;
+  border-radius: 8px;
+  width: 470px;
+}
+
+.icon-container img {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+}
+
+.icon-container:hover {
+  cursor: pointer;
+}
+
+.new-todo {
+  height: 40px;
+  padding: 4px;
+  font-size: 28px;
+  padding-left: 16px;
+  border: none;
+  width: 400px;
+}
+
+.new-todo:focus {
+  outline: none;
+}
+
+.highlight {
+  border: 1px solid red;
+  border-radius: 8px;
+}
