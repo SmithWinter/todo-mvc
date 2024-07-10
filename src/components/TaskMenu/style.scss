@@ -1,0 +1,22 @@
+.task-menu {
+  margin: 0 auto;
+}
+.task-menu-item {
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  &:active {
+    border: none;
+  }
+
+  &:not(.highlight):hover {
+    border: 1px solid red;
+    border-radius: 4px;
+  }
+}
+
+.highlight {
+  border: 3px solid red;
+}

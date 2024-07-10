@@ -6,7 +6,7 @@
     @focusout="handleBlur"
     tabindex="0"
   >
-    <span class="icon-container" @click="toggleChangeImage">
+    <span class="icon-container" @click="toggleItemChecked">
       <img :src="currentImage" />
     </span>
     <input class="new-todo" placeholder="What needs to be done?" />
@@ -17,16 +17,16 @@
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-  name: 'ToggleChangeImage',
+  name: 'ToggleItemChecked',
   setup() {
     const isSelected = ref(false)
     const checked = '/checked.png'
-    const unchecked = '/unchecked.png'
+    const unchecked = '/down-arrow.png'
     const currentImage = ref(unchecked)
 
     const isHighlighted = ref(false)
 
-    const toggleChangeImage = () => {
+    const toggleItemChecked = () => {
       isSelected.value = !isSelected.value
       currentImage.value = isSelected.value ? checked : unchecked
     }
@@ -42,7 +42,7 @@ export default defineComponent({
     return {
       isSelected,
       currentImage,
-      toggleChangeImage,
+      toggleItemChecked,
       isHighlighted,
       handleFocus,
       handleBlur

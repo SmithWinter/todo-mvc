@@ -1,0 +1,20 @@
+.task-list-container {
+  box-shadow:
+    0 1px 1px #0003,
+    0 8px 0 -3px #f6f6f6,
+    0 9px 1px -3px #0003,
+    0 16px 0 -6px #f6f6f6,
+    0 17px 2px -6px #0003;
+}
+
+.task-list-info {
+  padding: 10px 15px;
+  height: 20px;
+  font-size: 16px;
+  border-top: 1px solid #e6e6e6;
+  display: flex;
+}
+
+.list-counter {
+  width: 20%;
+}

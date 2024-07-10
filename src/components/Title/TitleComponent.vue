@@ -1,8 +1,6 @@
 <template>
   <div class="title-component">
-    <h1 class="title-container">
-      <slot name="text"></slot>
-    </h1>
+    <h1 class="title-container">To Do List • MVC</h1>
   </div>
 </template>
 

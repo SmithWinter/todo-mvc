@@ -1,8 +1,7 @@
-.input-container {
+.task-item-container {
   padding: 4px;
   display: flex;
   width: 98%;
-  transition: transform 0.3s ease;
 
   &:not(.highlight):hover {
     border: 1px solid red;
@@ -19,12 +18,13 @@
   cursor: pointer;
 }
 
-.new-todo {
+.task-item {
   height: 40px;
   padding: 4px;
   font-size: 28px;
   padding-left: 16px;
   border: none;
+  width: 400px;
 
   &:focus {
     outline: none;
@@ -33,5 +33,4 @@
 
 .highlight {
   border: 3px solid red;
-  border-radius: 0px;
 }
