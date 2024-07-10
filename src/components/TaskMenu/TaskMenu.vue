@@ -4,6 +4,7 @@
       class="task-menu-item"
       :class="{ highlight: isHighlighted }"
       @click="handleClick"
+      @focusout="handleBlur"
       tabindex="0"
     >
       {{ menu }}
@@ -24,14 +25,17 @@ export default defineComponent({
   },
   setup() {
     const isHighlighted = ref(false)
-    const toggleHighlight = isHighlighted.value
-
     const handleClick = () => {
-      isHighlighted.value = !toggleHighlight
+      isHighlighted.value = true
+    }
+
+    const handleBlur = () => {
+      isHighlighted.value = false
     }
     return {
       isHighlighted,
-      handleClick
+      handleClick,
+      handleBlur
     }
   }
 })

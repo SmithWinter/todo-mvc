@@ -8,21 +8,28 @@
       <InputComponent />
       <TaskList :data="data" :counter="itemRemainingCounter" />
     </div>
+
+    <div class="footer">
+      <Disclaimer />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 import TitleComponent from '../../components/Title/TitleComponent.vue'
 import InputComponent from '../../components/Input/InputComponent.vue'
 import TaskList from '../../components/TaskList/TaskList.vue'
-import { defineComponent } from 'vue'
+import Disclaimer from '../../components/DisclaimerSection/DisclaimerSection.vue'
 
 export default defineComponent({
   name: 'dataHandler',
   components: {
     TitleComponent,
     InputComponent,
-    TaskList
+    TaskList,
+    Disclaimer
   },
   data() {
     return {
@@ -35,6 +42,11 @@ export default defineComponent({
         {
           id: 2,
           task: 'Dummy task 2',
+          isFinished: true
+        },
+        {
+          id: 3,
+          task: 'Dummy task 3',
           isFinished: true
         }
       ]

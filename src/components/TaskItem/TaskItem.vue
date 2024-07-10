@@ -9,7 +9,12 @@
     <span class="icon-container" @click="toggleTaskStatus">
       <img :src="checkCurrentImage()" />
     </span>
-    <input class="task-item" placeholder="What needs to be done?" :value="task" />
+    <input
+      class="task-item"
+      placeholder="What needs to be done?"
+      :value="task"
+      :class="{ marked: taskMarked }"
+    />
   </div>
 </template>
 
@@ -37,17 +42,17 @@ export default defineComponent({
     const unchecked = '/unchecked.png'
     const checked = '/checked.png'
     const isHighlighted = ref(false)
-    const markedTask = ref(isFinished)
+    const taskMarked = ref(isFinished)
 
     const checkCurrentImage = () => {
-      if (markedTask.value) {
+      if (taskMarked.value) {
         return checked
       }
       return unchecked
     }
 
     const toggleTaskStatus = () => {
-      markedTask.value = !markedTask.value
+      taskMarked.value = !taskMarked.value
     }
 
     const handleFocus = () => {
@@ -66,7 +71,8 @@ export default defineComponent({
       handleBlur,
       id,
       task,
-      isFinished
+      isFinished,
+      taskMarked
     }
   }
 })
