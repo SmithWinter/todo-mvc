@@ -21,7 +21,7 @@ import { defineComponent } from 'vue'
 import TitleComponent from '../../components/Title/TitleComponent.vue'
 import InputComponent from '../../components/Input/InputComponent.vue'
 import TaskList from '../../components/TaskList/TaskList.vue'
-import Disclaimer from '../../components/DisclaimerSection/DisclaimerSection.vue'
+import Disclaimer from '../../components/Disclaimer/DisclaimerComponent.vue'
 
 export default defineComponent({
   name: 'dataHandler',
