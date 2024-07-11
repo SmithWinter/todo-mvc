@@ -1,44 +1,36 @@
 <template>
   <div class="task-menu">
-    <span
+    <div
       class="task-menu-item"
-      :class="{ highlight: isHighlighted }"
-      @click="handleClick"
-      @focusout="handleBlur"
+      :class="{ highlight: String(route.path) === String(props.menu.path) }"
+      @click="fetchFilteredData"
       tabindex="0"
     >
-      {{ menu }}
-    </span>
+      <RouterLink v-bind:to="props.menu.path">
+        {{ props.menu.name }}
+      </RouterLink>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { useRoute, RouterLink } from 'vue-router'
 
-export default defineComponent({
-  name: 'TaskMenuSelection',
-  props: {
-    menu: {
-      type: String,
-      required: true
-    }
-  },
-  setup() {
-    const isHighlighted = ref(false)
-    const handleClick = () => {
-      isHighlighted.value = true
-    }
+import { type MenuItem } from '../../helpers/interface'
+import { taskStore } from '../../store/taskStore'
 
-    const handleBlur = () => {
-      isHighlighted.value = false
-    }
-    return {
-      isHighlighted,
-      handleClick,
-      handleBlur
-    }
+const useTaskStore = taskStore()
+const route = useRoute()
+const props = defineProps<{ menu: MenuItem }>()
+
+const fetchFilteredData = () => {
+  try {
+    const itemParams = props.menu.params
+    useTaskStore.fetchTasks(itemParams)
+  } catch (error) {
+    console.error(error)
   }
-})
+}
 </script>
 
 <style lang="scss" scoped>

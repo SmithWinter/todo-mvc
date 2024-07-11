@@ -7,8 +7,8 @@
   transition: transform 0.3s ease;
   cursor: pointer;
 
-  &:active {
-    border: none;
+  span:first-letter {
+    text-transform: capitalize;
   }
 
   &:not(.highlight):hover {
@@ -18,5 +18,9 @@
 }
 
 .highlight {
+  border: 3px solid red;
+}
+
+.focus {
   border: 3px solid red;
 }

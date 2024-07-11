@@ -13,42 +13,28 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 
-export default defineComponent({
-  name: 'ToggleItemChecked',
-  setup() {
-    const isSelected = ref(false)
-    const checked = '/checked.png'
-    const unchecked = '/down-arrow.png'
-    const currentImage = ref(unchecked)
+const isSelected = ref(false)
+const checked = '/checked.png'
+const unchecked = '/down-arrow.png'
+const currentImage = ref(unchecked)
 
-    const isHighlighted = ref(false)
+const isHighlighted = ref(false)
 
-    const toggleItemChecked = () => {
-      isSelected.value = !isSelected.value
-      currentImage.value = isSelected.value ? checked : unchecked
-    }
+const toggleItemChecked = () => {
+  isSelected.value = !isSelected.value
+  currentImage.value = isSelected.value ? checked : unchecked
+}
 
-    const handleFocus = () => {
-      isHighlighted.value = true
-    }
+const handleFocus = () => {
+  isHighlighted.value = true
+}
 
-    const handleBlur = () => {
-      isHighlighted.value = false
-    }
-
-    return {
-      isSelected,
-      currentImage,
-      toggleItemChecked,
-      isHighlighted,
-      handleFocus,
-      handleBlur
-    }
-  }
-})
+const handleBlur = () => {
+  isHighlighted.value = false
+}
 </script>
 
 <style lang="scss" scoped>

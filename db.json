@@ -1,0 +1,19 @@
+{
+  "taskList": [
+    {
+      "id": "ca28",
+      "task": "Dummy task 1",
+      "isFinished": true
+    },
+    {
+      "id": "ca9c",
+      "task": "Dummy Task 2",
+      "isFinished": true
+    },
+    {
+      "id": "ddf7",
+      "task": "Dummy task 3",
+      "isFinished": false
+    }
+  ]
+}

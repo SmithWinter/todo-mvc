@@ -24,11 +24,26 @@
   font-size: 28px;
   padding-left: 16px;
   border: none;
-  width: 400px;
+  width: 440px;
+  cursor: pointer;
 
   &:focus {
-    outline: none;
+    // outline: none;
+    border: 1px grey;
   }
+}
+
+.data-label {
+  font-size: 28px;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 40px;
+  width: 380px;
+  cursor: pointer;
+}
+
+.edit-button {
+  margin-left: 16px;
 }
 
 .highlight {

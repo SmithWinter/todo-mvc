@@ -6,7 +6,7 @@
 
     <div class="body">
       <InputComponent />
-      <TaskList :data="data" :counter="itemRemainingCounter" />
+      <TaskList :data="tasks" :counter="itemRemainingCounter" />
     </div>
 
     <div class="footer">
@@ -15,52 +15,31 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { onMounted, computed } from 'vue'
+import { storeToRefs } from 'pinia'
 
 import TitleComponent from '../../components/Title/TitleComponent.vue'
 import InputComponent from '../../components/Input/InputComponent.vue'
 import TaskList from '../../components/TaskList/TaskList.vue'
 import Disclaimer from '../../components/Disclaimer/DisclaimerComponent.vue'
+import { taskStore } from '../../store/taskStore'
 
-export default defineComponent({
-  name: 'dataHandler',
-  components: {
-    TitleComponent,
-    InputComponent,
-    TaskList,
-    Disclaimer
-  },
-  data() {
-    return {
-      data: [
-        {
-          id: 1,
-          task: 'Dummy task 1',
-          isFinished: false
-        },
-        {
-          id: 2,
-          task: 'Dummy task 2',
-          isFinished: true
-        },
-        {
-          id: 3,
-          task: 'Dummy task 3',
-          isFinished: true
-        }
-      ]
-    }
-  },
-  computed: {
-    itemRemainingCounter() {
-      const counter = this.data.length
-      if (counter > 1) {
-        return `${counter} items left`
-      }
-      return `${counter} item left`
-    }
+const useTaskStore = taskStore()
+const { tasks } = storeToRefs(useTaskStore)
+
+onMounted(() => {
+  try {
+    useTaskStore.fetchTasks()
+    console.log(tasks.value)
+  } catch (error) {
+    console.error(error)
   }
+})
+
+const itemRemainingCounter = computed(() => {
+  const number = tasks.value.length
+  return number > 1 ? `${number} items left` : `${number} item left`
 })
 </script>
 
