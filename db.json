@@ -2,7 +2,7 @@
   "taskList": [
     {
       "id": "ca28",
-      "task": "Dummy task 1",
+      "task": "Dummy Task 1",
       "isFinished": true
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "id": "ddf7",
-      "task": "Dummy task 3",
+      "task": "Dummy Task 3",
       "isFinished": false
     }
   ]

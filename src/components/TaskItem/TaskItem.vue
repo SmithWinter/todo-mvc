@@ -4,9 +4,11 @@
     :class="{ highlight: isHighlighted }"
     @focus="handleFocus"
     @blur="handleBlur"
+    @mouseenter="mouseOnHandler"
+    @mouseleave="mouseOutHandler"
     tabindex="0"
   >
-    <span class="icon-container" @click="toggleTaskStatus">
+    <span class="icon-container" @click="toggleTaskStatus" v-if="isDisabled">
       <img :src="checkCurrentImage()" />
     </span>
     <label
@@ -28,6 +30,14 @@
       @keyup.enter="keypressHandler"
       :disabled="isDisabled"
     />
+    <span
+      class="delete-button"
+      v-if="isDisabled"
+      :class="{ hidden: isHidden }"
+      @click="deleteButtonHandler"
+    >
+      <img src="/remove.png" />
+    </span>
   </div>
 </template>
 
@@ -44,6 +54,7 @@ const useTaskStore = taskStore()
 
 const isHighlighted = ref(false)
 const isDisabled = ref(true)
+const isHidden = ref(true)
 const editInput = ref()
 const taskName = ref()
 const taskStatus = ref()
@@ -63,19 +74,23 @@ const inputFocusHandler = () => {
   })
 }
 
-const keypressHandler = () => {
+const keypressHandler = async () => {
   isDisabled.value = true
   const task = taskName.value
-  useTaskStore.editTask(props.item.id, { task })
+  await useTaskStore.editTask(props.item.id, { task })
 }
 
 const inputBlurHandler = () => {
   isDisabled.value = true
 }
-const toggleTaskStatus = () => {
+const toggleTaskStatus = async () => {
   taskStatus.value = props.item.isFinished
   const isFinished = !taskStatus.value
-  useTaskStore.editTask(props.item.id, { isFinished })
+  await useTaskStore.editTask(props.item.id, { isFinished })
+}
+
+const deleteButtonHandler = async () => {
+  await useTaskStore.deleteTask(props.item.id)
 }
 
 const handleFocus = () => {
@@ -84,6 +99,14 @@ const handleFocus = () => {
 
 const handleBlur = () => {
   isHighlighted.value = false
+}
+
+const mouseOnHandler = () => {
+  isHidden.value = false
+}
+
+const mouseOutHandler = () => {
+  isHidden.value = true
 }
 </script>
 

@@ -7,6 +7,7 @@
     <div class="task-list-info">
       <div class="list-counter">{{ props.counter }}</div>
       <TaskMenu v-for="item in menuList" :key="item.path" :menu="item" />
+      <div class="delete-completed-tasks">Clear Completed</div>
     </div>
   </div>
 </template>

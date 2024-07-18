@@ -13,7 +13,18 @@
   font-size: 16px;
   border-top: 1px solid #e6e6e6;
   display: flex;
-  height: 48px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-completed-tasks {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+  &.click {
+    border: 1px solid red;
+  }
 }
 
 .list-counter {

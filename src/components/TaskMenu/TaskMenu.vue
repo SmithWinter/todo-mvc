@@ -2,31 +2,31 @@
   <div class="task-menu">
     <div
       class="task-menu-item"
-      :class="{ highlight: String(route.path) === String(props.menu.path) }"
+      :class="{ highlight: String(props.menu.path) === String(route.path) }"
       @click="fetchFilteredData"
       tabindex="0"
     >
-      <RouterLink v-bind:to="props.menu.path">
-        {{ props.menu.name }}
-      </RouterLink>
+      {{ props.menu.name }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRoute, RouterLink } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import { type MenuItem } from '../../helpers/interface'
 import { taskStore } from '../../store/taskStore'
 
 const useTaskStore = taskStore()
 const route = useRoute()
+const router = useRouter()
 const props = defineProps<{ menu: MenuItem }>()
 
-const fetchFilteredData = () => {
+const fetchFilteredData = async () => {
   try {
+    router.push(String(props.menu.path))
     const itemParams = props.menu.params
-    useTaskStore.fetchTasks(itemParams)
+    await useTaskStore.fetchTasks(itemParams)
   } catch (error) {
     console.error(error)
   }

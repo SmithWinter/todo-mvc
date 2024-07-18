@@ -29,6 +29,26 @@ export const taskStore = defineStore('ToDoMVC', {
       } catch (error) {
         console.error('Error:', error)
       }
+    },
+
+    async deleteTask(id: string) {
+      try {
+        await api.deleteTask(id)
+        this.tasks = this.tasks.filter((task: Task) => task.id !== id)
+        console.log('Data store: ', this.tasks)
+      } catch (error) {
+        console.error('Error:', error)
+      }
+    },
+
+    async addTask(task: Task) {
+      try {
+        const response = await api.postTask(task)
+        this.tasks.push(response)
+        console.log('Data store: ', this.tasks)
+      } catch (error) {
+        console.error('Error:', error)
+      }
     }
   }
 })

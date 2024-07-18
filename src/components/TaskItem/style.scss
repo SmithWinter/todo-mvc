@@ -2,19 +2,21 @@
   padding: 4px;
   display: flex;
   width: 98%;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+  img {
+    width: 40px;
+    height: 40px;
+    padding-left: 4px;
+  }
 
   &:not(.highlight):hover {
     border: 1px solid red;
   }
 }
 
-.icon-container img {
-  width: 40px;
-  height: 40px;
-  padding: 4px;
-}
-
-.icon-container:hover {
+.icon-container {
+  margin-right: 4px;
   cursor: pointer;
 }
 
@@ -24,11 +26,9 @@
   font-size: 28px;
   padding-left: 16px;
   border: none;
-  width: 440px;
-  cursor: pointer;
+  width: 100%;
 
   &:focus {
-    // outline: none;
     border: 1px grey;
   }
 }
@@ -37,13 +37,17 @@
   font-size: 28px;
   padding-left: 16px;
   padding-right: 16px;
+  margin-top: 8px;
   height: 40px;
-  width: 380px;
-  cursor: pointer;
+  width: 78%;
 }
 
 .edit-button {
   margin-left: 16px;
+}
+
+.delete-button {
+  cursor: pointer;
 }
 
 .highlight {
@@ -52,4 +56,9 @@
 
 .marked {
   text-decoration: line-through;
+  color: gray;
+}
+
+.hidden {
+  display: none;
 }
