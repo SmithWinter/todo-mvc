@@ -5,7 +5,7 @@
     </div>
 
     <div class="body">
-      <InputComponent />
+      <InputComponent :toggleCheckAllTask="toggleCheckAllTask" />
       <TaskList :data="tasks" :counter="itemRemainingCounter" />
     </div>
 
@@ -47,8 +47,13 @@ onMounted(async () => {
 })
 
 const itemRemainingCounter = computed(() => {
-  const number = tasks.value.length
+  const number: number = tasks.value.length
   return number > 1 ? `${number} items left` : `${number} item left`
+})
+
+const toggleCheckAllTask = computed(() => {
+  const taskQuantity: number = tasks.value.length
+  return taskQuantity === 0 ? false : true
 })
 </script>
 

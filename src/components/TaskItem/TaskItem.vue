@@ -76,8 +76,10 @@ const inputFocusHandler = () => {
 
 const keypressHandler = async () => {
   isDisabled.value = true
-  const task = taskName.value
-  await useTaskStore.editTask(props.item.id, { task })
+  if (taskName.value) {
+    const task = taskName.value
+    await useTaskStore.editTask(props.item.id, { task })
+  }
 }
 
 const inputBlurHandler = () => {

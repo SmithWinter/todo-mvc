@@ -6,22 +6,37 @@
     @focusout="handleBlur"
     tabindex="0"
   >
-    <span class="icon-container" @click="toggleItemChecked">
+    <span class="icon-container" @click="toggleItemChecked" v-if="props.toggleCheckAllTask">
       <img :src="currentImage" />
     </span>
-    <input class="new-todo" placeholder="What needs to be done?" />
+    <input
+      class="new-todo"
+      placeholder="What needs to be done?"
+      v-model="taskInput"
+      @keyup.enter="newTaskHandler"
+      :class="{ spacing: !props.toggleCheckAllTask }"
+    />
+    <span class="clear-button" v-if="taskInput" @click="clearInputHandler"> Clear </span>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { taskStore } from '../../store/taskStore'
+import { type Task } from '../../helpers/interface'
 
-const isSelected = ref(false)
+const useTaskStore = taskStore()
 const checked = '/checked.png'
 const unchecked = '/down-arrow.png'
-const currentImage = ref(unchecked)
 
+const isSelected = ref(false)
 const isHighlighted = ref(false)
+const currentImage = ref(unchecked)
+const taskInput = ref()
+
+const props = defineProps<{
+  toggleCheckAllTask: boolean
+}>()
 
 const toggleItemChecked = () => {
   isSelected.value = !isSelected.value
@@ -34,6 +49,21 @@ const handleFocus = () => {
 
 const handleBlur = () => {
   isHighlighted.value = false
+}
+
+const newTaskHandler = async () => {
+  if (taskInput.value) {
+    const data: Task = {
+      task: taskInput.value,
+      isFinished: false
+    }
+    await useTaskStore.addTask(data)
+  }
+  taskInput.value = ''
+}
+
+const clearInputHandler = () => {
+  taskInput.value = ''
 }
 </script>
 

@@ -1,8 +1,10 @@
 .input-container {
   padding: 4px;
   display: flex;
+  align-items: center;
   width: 98%;
   transition: transform 0.3s ease;
+  border-bottom: 1px solid #ededed;
 
   &:not(.highlight):hover {
     border: 1px solid red;
@@ -25,13 +27,29 @@
   font-size: 28px;
   padding-left: 12px;
   border: none;
+  width: 82%;
 
   &:focus {
     outline: none;
   }
 }
 
+.clear-button {
+  font-style: italic;
+  color: grey;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .highlight {
   border: 3px solid red;
   border-radius: 0px;
+}
+
+.hidden {
+  display: none;
+}
+
+.spacing {
+  margin-left: 44px;
 }

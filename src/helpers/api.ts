@@ -84,8 +84,8 @@ class apiService {
    */
   async postTask(task: Task): Promise<AxiosResponse<Task> | undefined> {
     try {
-      const response = await axios.post(`${API_URL}/taskList`, { task })
-      if (response.status === 200) {
+      const response = await axios.post(`${API_URL}/taskList`, task)
+      if (response.status === 201) {
         return response.data
       } else {
         throw Error('Something wrong')
