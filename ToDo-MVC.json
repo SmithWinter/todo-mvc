@@ -98,6 +98,45 @@
           "variable": []
         }
       }
+    },
+    {
+      "name": "Clear Completed Task",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/clearCompletedTask",
+          "host": [
+            "localhost"
+          ],
+          "path": [],
+          "query": [],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "Modify All Task Status",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/modifyAllTaskStatus?status=true",
+          "host": [
+            "localhost"
+          ],
+          "path": [],
+          "query": [
+            {
+              "key": "status",
+              "value": "true"
+            }
+          ],
+          "variable": []
+        }
+      }
     }
   ],
   "variable": []
