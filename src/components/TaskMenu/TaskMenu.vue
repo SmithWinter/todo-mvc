@@ -27,6 +27,7 @@ const fetchFilteredData = async () => {
     router.push(String(props.menu.path))
     const itemParams = props.menu.params
     await useTaskStore.fetchTasks(itemParams)
+    useTaskStore.checkAllTaskCompleted()
   } catch (error) {
     console.error(error)
   }

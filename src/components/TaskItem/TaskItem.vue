@@ -79,6 +79,7 @@ const keypressHandler = async () => {
   if (taskName.value) {
     const task = taskName.value
     await useTaskStore.editTask(props.item.id, { task })
+    useTaskStore.checkAllTaskCompleted()
   }
 }
 
@@ -89,10 +90,12 @@ const toggleTaskStatus = async () => {
   taskStatus.value = props.item.isFinished
   const isFinished = !taskStatus.value
   await useTaskStore.editTask(props.item.id, { isFinished })
+  useTaskStore.checkAllTaskCompleted()
 }
 
 const deleteButtonHandler = async () => {
   await useTaskStore.deleteTask(props.item.id)
+  useTaskStore.checkAllTaskCompleted()
 }
 
 const handleFocus = () => {

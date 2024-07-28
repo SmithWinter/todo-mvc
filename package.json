@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "server": "json-server --watch db.json",
+    "server": "nodemon server",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -37,6 +37,7 @@
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/tsconfig": "^0.5.1",
     "eslint": "^8.57.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-vue": "^9.23.0",
     "nodemon": "^3.1.4",
     "npm-run-all2": "^6.2.0",

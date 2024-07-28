@@ -7,7 +7,7 @@
     tabindex="0"
   >
     <span class="icon-container" @click="toggleItemChecked" v-if="props.toggleCheckAllTask">
-      <img :src="currentImage" />
+      <img :src="imageSource()" />
     </span>
     <input
       class="new-todo"
@@ -28,19 +28,22 @@ import { type Task } from '../../helpers/interface'
 const useTaskStore = taskStore()
 const checked = '/checked.png'
 const unchecked = '/down-arrow.png'
-
-const isSelected = ref(false)
 const isHighlighted = ref(false)
 const currentImage = ref(unchecked)
 const taskInput = ref()
 
 const props = defineProps<{
   toggleCheckAllTask: boolean
+  allTaskCompleted: boolean
 }>()
 
-const toggleItemChecked = () => {
-  isSelected.value = !isSelected.value
-  currentImage.value = isSelected.value ? checked : unchecked
+const imageSource = () => {
+  return props.allTaskCompleted ? (currentImage.value = checked) : (currentImage.value = unchecked)
+}
+
+const toggleItemChecked = async () => {
+  await useTaskStore.modifyAllTaskStatus({ status: !props.allTaskCompleted })
+  useTaskStore.checkAllTaskCompleted()
 }
 
 const handleFocus = () => {
@@ -58,6 +61,7 @@ const newTaskHandler = async () => {
       isFinished: false
     }
     await useTaskStore.addTask(data)
+    useTaskStore.checkAllTaskCompleted()
   }
   taskInput.value = ''
 }

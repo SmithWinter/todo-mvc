@@ -5,7 +5,10 @@
     </div>
 
     <div class="body">
-      <InputComponent :toggleCheckAllTask="toggleCheckAllTask" />
+      <InputComponent
+        :toggleCheckAllTask="toggleCheckAllTask"
+        :allTaskCompleted="allTaskCompleted"
+      />
       <TaskList :data="tasks" :counter="itemRemainingCounter" />
     </div>
 
@@ -31,7 +34,7 @@ import { type MenuItem } from '../../helpers/interface'
 const route = useRoute()
 
 const useTaskStore = taskStore()
-const { tasks } = storeToRefs(useTaskStore)
+const { tasks, allTaskCompleted } = storeToRefs(useTaskStore)
 
 onMounted(async () => {
   try {
@@ -40,7 +43,7 @@ onMounted(async () => {
     })
     const exactParams = exactMenuItem?.params || ''
     await useTaskStore.fetchTasks(exactParams)
-    console.log(tasks.value)
+    useTaskStore.checkAllTaskCompleted()
   } catch (error) {
     console.error(error)
   }
